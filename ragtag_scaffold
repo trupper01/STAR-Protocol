@@ -6,3 +6,23 @@ ragtag.py scaffold \
         -t "number of thread" \
         1> "output name".log \
         2> "output name".err
+
+# 2 removing RagTag identifier from header of scaffold
+
+        #!/usr/bin/env bash
+        # Assuming your FASTA file is named "your_file.fasta"
+        # Extract the base name of the file without the extension
+        # Remove "_RagTag" from the header and save to a new file
+
+        input_file="your_file.fasta"
+        name=$(basename -s .fasta "$input_file")
+        sed 's/_RagTag//' "$input_file" > "${name}_rename.fasta"
+
+# 3 remove all chromosome that didn't match target chromosome
+
+        # need a 'chromosome name list' that contain the names of the chromosomes to be compared
+        # after creating 'chromosome name list'
+        for i in ‘cat chromosome.name.list.txt‘; do
+        cat chromosome-level_genome_assembly.fa | bioawk -c fastx -v chr="$i" ’$name==chr{print ">chr"$name; print $seq}’ >> reference_chromosome.fa
+        cat ragtag.scaffold.fasta | bioawk -c fastx -v chr="$i" ’$name==chr{print ">chr"$name; print $seq}’ >> your_scaffold.fa
+        done
