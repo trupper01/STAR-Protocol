@@ -1,1 +1,14 @@
 #reference gene and assembled gene alignment using minimap2
+
+ref="reference.fasta
+qry="assembled.fasta"
+prefix="intended_file_prefix"
+
+minimap2 \
+    -x asm5 \  # Add the -x asm5 option to specify asm5 preset
+    "$ref" \
+    "$qry" \
+    -t 10 \
+    -o "$prefix".paf \
+    1> "$prefix".minimap2.log \
+    2> "$prefix".minimap2.err &
