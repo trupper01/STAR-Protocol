@@ -1,6 +1,6 @@
 #reference gene and assembled gene alignment using minimap2
 
-ref="reference.fasta
+ref="reference.fasta"
 qry="assembled.fasta"
 prefix="intended_file_prefix"
 
@@ -12,3 +12,19 @@ minimap2 \
     -o "$prefix".paf \
     1> "$prefix".minimap2.log \
     2> "$prefix".minimap2.err &
+
+#2 perform whole-genome alignment and creating .sam files for SyRi
+
+ref="reference.fasta"
+qry="scaffold.fasta"
+prefix="intended_file_prefix"
+
+minimap2 \
+    -a 
+    --eqx
+    -x asm5 
+    "$ref" \
+    "$qry" \
+    -t 10 \
+    -o "$prefix".sam \
+
