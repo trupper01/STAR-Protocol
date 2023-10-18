@@ -1,0 +1,8 @@
+# scaffold a query assembly
+ragtag.py scaffold \
+        "reference.fasta" \
+        "assembled.fasta" \
+        -o "output name" \
+        -t "number of thread" \
+        1> "output name".log \
+        2> "output name".err
