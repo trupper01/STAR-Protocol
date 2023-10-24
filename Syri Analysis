@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Define the paths to the required input files
+syri_executable="/path/to/syri-1.4/syri/bin/syri"
+syri_sam_file="syri.sam"
+reference_genome_file="chromosome-level_genome_assembly.fa"
+query_scaffold_file="your_scaffold.fa"
+
+# Additional options
+options="-k -F S"
+
+# Run Syri with the specified parameters
+python "$syri_executable" -c "$syri_sam_file" -r "$reference_genome_file" -q "$query_scaffold_file" $options
