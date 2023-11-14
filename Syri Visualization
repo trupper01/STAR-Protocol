@@ -1,18 +1,8 @@
 #!/bin/bash
 
-# Define the path to the plotsr in Syri-1.4 directory
-syri_path="/path/to/syri-1.4"
+sr="syri.out"
+genomes="genomes.txt"
+chrord="chr_order.txt"
+output="plotsr.pdf"
 
-# Define the path to the plotsr script
-plotsr_script="$syri_path/syri/bin/plotsr"
-
-# Define the paths to the required input files
-syri_output_file="syri.out"
-reference_genome_file="chromosome-level_genome_assembly.fa"
-query_scaffold_file="your_scaffold.fa"
-
-# Additional options, including --chrorder and -W
-options="--chrorder chromosome_order_files -H 8 -W"
-
-# Run the plotsr script with the specified parameters
-"$plotsr_script" "$syri_output_file" "$reference_genome_file" "$query_scaffold_file" $options
+plotsr --sr "$sr" --genomes "$genomes" --chrord "$chrord" -o "$output" -R -H 8 -W 5 &
